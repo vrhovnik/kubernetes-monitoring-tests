@@ -24,3 +24,9 @@
 | where Namespace contains "prometheus"
 | extend tags=parse_json(Tags)
 | summarize count() by Name`
+
+## Get one or more metric alert rules
+
+``` Powershell
+Get-AzMetricAlertRuleV2
+```
