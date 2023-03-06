@@ -11,7 +11,7 @@ if ("" -ne $EnvFileToReadFrom) {
         $name, $value = $_.split('=')
         Set-Content env:\$name $value
     }
-    return;
+    Write-Information "Data has been read from the file $EnvFileToReadFrom and environment variables have been set"    
 }
 else {
 
@@ -42,5 +42,12 @@ else {
 
     $env:MonitoringAppSecret = $appSecret        
 }
+
+# Import the System.Web assembly to be able to use the HttpUtility class
 Add-Type -AssemblyName System.Web
-Write-Output "Environment variables are set, you can now run the script to send data to the data collection endpoint"
+
+Write-Output "Environment variables are set (data below), you can now run the script to send data to the data collection endpoint"
+Write-Output "----------------------------------------------------------------------------------------------------------------"
+Write-Output "Tenant ID: $env:MonitoringTenantId"
+Write-Output "App ID: $env:MonitoringAppId"
+Write-Output "Secret ID: $env:MonitoringAppSecret"
