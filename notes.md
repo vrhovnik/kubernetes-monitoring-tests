@@ -12,8 +12,6 @@ Register-AzResourceProvider -ProviderNamespace "Microsoft.ChangeAnalysis"
 
 Metrics are sent to [metrics database in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-platform-metrics). Log data is sent to [your Log Analytics workspace](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview).
 
-
-
 ### Data structure and overview
 
 ![Container insights overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/media/container-insights-overview/azmon-containers-architecture-01.png#lightbox)
@@ -38,12 +36,11 @@ Check, if deamon was deployed successfuly on AKS:
 
 Default scrape frequency is 30 seconds. To change it, edit the `prometheus-config` config map in the `kube-system` namespace. Check default configuration [here](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-scrape-default).
 
-
-
 ![Prometheus metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/media/container-insights-prometheus/monitoring-kubernetes-architecture.png#lightbox)
 
 Supported links in documentation:
 
-1. [Prometheus Operator](https://prometheus-operator.dev/docs/user-guides/getting-started/)
-2. [How to find resource inefficiencies with Kubernetes Monitoring](https://grafana.com/blog/2023/03/03/how-to-optimize-resource-utilization-with-kubernetes-monitoring-for-grafana-cloud/?utm_source=grafana_news&utm_medium=rss)
-3. [Send data to Azure Monitor managed service for Prometheus](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-prometheus?tabs=cluster-wide#send-data-to-azure-monitor-managed-service-for-prometheus)
+1. [Prometheus collectors dashboards](https://github.com/Azure/prometheus-collector/tree/main/mixins)
+2. [Prometheus Operator](https://prometheus-operator.dev/docs/user-guides/getting-started/)
+3. [How to find resource inefficiencies with Kubernetes Monitoring](https://grafana.com/blog/2023/03/03/how-to-optimize-resource-utilization-with-kubernetes-monitoring-for-grafana-cloud/?utm_source=grafana_news&utm_medium=rss)
+4. [Send data to Azure Monitor managed service for Prometheus](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-prometheus?tabs=cluster-wide#send-data-to-azure-monitor-managed-service-for-prometheus)
