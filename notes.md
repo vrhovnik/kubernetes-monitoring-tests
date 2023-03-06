@@ -6,6 +6,8 @@ Testing different options for Monitoring the Azure infrastructure on which Kuber
 
 Metrics are sent to [metrics database in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-platform-metrics). Log data is sent to [your Log Analytics workspace](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview).
 
+
+
 ### Data structure and overview
 
 ![Container insights overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/media/container-insights-overview/azmon-containers-architecture-01.png#lightbox)

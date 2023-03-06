@@ -1,4 +1,8 @@
 ################
+##### Description: This script sends logs to Log Analytics via the data collection 
+##### More info at: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal
+################
+################
 ##### Usage
 ################
 # LogGenerator.ps1
@@ -8,7 +12,9 @@
 #   [-Table]                   - The name of the custom log table, including "_CL" suffix
 
 param (
-    [Parameter(HelpMessage = "Log file to be forwarded")] [string]$Log, 
+    [Parameter(HelpMessage = "Log file to be forwarded")] 
+    [ValidateNotNullOrEmpty()]
+    [string]$Log, 
     [Parameter(HelpMessage = "DCR immutable ID")]
     [ValidateNotNullOrEmpty()]
     [string]$DcrImmutableId, 

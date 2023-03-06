@@ -11,6 +11,7 @@ if ("" -ne $EnvFileToReadFrom) {
         $name, $value = $_.split('=')
         Set-Content env:\$name $value
     }
+    return;
 }
 else {
 
