@@ -1,0 +1,57 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [
+        {
+           "name": "sampleRuleGroup",
+           "type": "Microsoft.AlertsManagement/prometheusRuleGroups",
+           "apiVersion": "2021-07-22-preview",
+           "location": "northcentralus",
+           "properties": {
+                "description": "Sample Prometheus Rule Group",
+                "scopes": [
+                    "/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<azure-monitor-workspace-name>"
+                ],
+                "enabled": true,
+                "clusterName": "<myCLusterName>",
+                "interval": "PT1M",
+                "rules": [
+                    {
+                        "record": "instance:node_cpu_utilisation:rate5m",
+                        "expression": "1 - avg without (cpu) (sum without (mode)(rate(node_cpu_seconds_total{job=\"node\", mode=~\"idle|iowait|steal\"}[5m])))",
+                        "labels": {
+                            "workload_type": "job"
+                        },
+                        "enabled": true
+                    },
+                    {
+                        "alert": "KubeCPUQuotaOvercommit",
+                        "expression": "sum(min without(resource) (kube_resourcequota{job=\"kube-state-metrics\", type=\"hard\", resource=~\"(cpu|requests.cpu)\"})) /  sum(kube_node_status_allocatable{resource=\"cpu\", job=\"kube-state-metrics\"}) > 1.5",
+                        "for": "PT5M",
+                        "labels": {
+                            "team": "prod"
+                        },
+                        "annotations": {
+                            "description": "Cluster has overcommitted CPU resource requests for Namespaces.",
+                            "runbook_url": "https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubecpuquotaovercommit",
+                            "summary": "Cluster has overcommitted CPU resource requests."
+                        },
+                        "enabled": true,
+                        "severity": 3,
+                        "resolveConfiguration": {
+                            "autoResolved": true,
+                            "timeToResolve": "PT10M"
+                        },
+                        "actions": [
+                            {
+                               "actionGroupId": "/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/actiongroups/<action-group-name>"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

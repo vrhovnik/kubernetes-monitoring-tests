@@ -2,6 +2,12 @@
 
 Testing different options for Monitoring the Azure infrastructure on which Kubernetes is running and how to apply different options to apply monitoring to requirements.
 
+To see different options, configure [ChangeAnalysis](https://learn.microsoft.com/en-us/azure/azure-monitor/change/change-analysis) if not enabled:
+
+``` Powershell
+Register-AzResourceProvider -ProviderNamespace "Microsoft.ChangeAnalysis"
+```
+
 ## Container insights: Azure Monitor and Log Analytics
 
 Metrics are sent to [metrics database in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-platform-metrics). Log data is sent to [your Log Analytics workspace](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview).
@@ -25,6 +31,14 @@ Supported links in documentation:
 ## Azure Monitor managed service for Prometheus
 
 Exposing the Prometheus metrics endpoint on the Kubernetes cluster and sending the data to Azure Monitor managed service for Prometheus.
+
+Check, if deamon was deployed successfuly on AKS:
+
+`kubectl get ds ama-metrics-node --namespace=kube-system`
+
+Default scrape frequency is 30 seconds. To change it, edit the `prometheus-config` config map in the `kube-system` namespace. Check default configuration [here](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-scrape-default).
+
+
 
 ![Prometheus metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/media/container-insights-prometheus/monitoring-kubernetes-architecture.png#lightbox)
 
