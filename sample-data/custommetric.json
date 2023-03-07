@@ -1,0 +1,25 @@
+{ 
+    "time": "2023-01-03T11:00:20", 
+    "data": { 
+        "baseData": { 
+            "metric": "QueueDepth", 
+            "namespace": "QueueProcessing", 
+            "dimNames": [ 
+              "QueueName", 
+              "MessageType" 
+            ], 
+            "series": [ 
+              { 
+                "dimValues": [ 
+                  "ImagesToProcess", 
+                  "JPEG" 
+                ], 
+                "min": 3, 
+                "max": 20, 
+                "sum": 28, 
+                "count": 3 
+              } 
+            ] 
+        } 
+    } 
+}
