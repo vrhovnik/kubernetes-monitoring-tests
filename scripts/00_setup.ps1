@@ -40,7 +40,23 @@ else {
         exit
     }
 
-    $env:MonitoringAppSecret = $appSecret        
+    $env:MonitoringAppSecret = $appSecret    
+    
+    $dataCollId = Read-Host "Enter DCR immutable ID"
+    if ("" -eq $dataCollId) {
+        Write-Error "DCR immutable IDrequired"
+        exit
+    }
+
+    $env:DataCollectionId = $dataCollId 
+
+    $dataCollUrl = Read-Host "Enter Data collection endpoint URI"
+    if ("" -eq $dataCollUrl) {
+        Write-Error "Data collection endpoint URI is required"
+        exit
+    }
+
+    $env:DataCollectionUrl = $dataCollUrl 
 }
 
 # Import the System.Web assembly to be able to use the HttpUtility class
@@ -51,3 +67,6 @@ Write-Output "------------------------------------------------------------------
 Write-Output "Tenant ID: $env:MonitoringTenantId"
 Write-Output "App ID: $env:MonitoringAppId"
 Write-Output "Secret ID: $env:MonitoringAppSecret"
+Write-Output "DCR immutable ID: $env:DataCollectionId"
+Write-Output "Data collection endpoint URI: $env:DataCollectionUrl"
+Write-Output "----------------------------------------------------------------------------------------------------------------"

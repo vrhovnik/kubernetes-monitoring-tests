@@ -20,6 +20,15 @@ Azure monitor for containers collect environment variables periodically from eve
 
 Azure Monitor for Containers support exclusion & inclusion lists by metric name. For example if you are scraping say, kubedns metrics in your cluster, there might be hundreds of them that gets scraped by default, but you are most probably using only a handful. Please ensure that you specify a list of metrics to scrape (or exclude others except a few) to save on data ingestion volume. Its very easy to enable scraping and not look into many of those metrics, which will cost in log analytics.
 
+### Compare the basics and analytics log data plans
+
+|  Category | Analytics  | Basic  |
+|:---:|---|---|
+|  Ingestion | Regular ingestion cost  |  Reduced ingestion cost |
+|  Log queries | Full query capabilities. No extra cost  | Basic query capabilities (Pay-per-use)  |
+| Retention  | Configure retention from 30 days to two years  | Retention fixed at eight days.When you change an existing table's plan to Basic logs, Azure archives data that's more than eight days old but still within the table's original retention period.  |
+|  Alerts | Supported.  | Not supported  |
+
 ### Data structure and overview
 
 ![Container insights overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/media/container-insights-overview/azmon-containers-architecture-01.png#lightbox)
